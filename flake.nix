@@ -53,22 +53,22 @@
     # TODO replace with your own username, email, system, and hostname
     username = "budchris";
     useremail = "budchris@solrey3.com";
-    system = "x86_64-darwin"; # aarch64-darwin or x86_64-darwin
-    hostname = "solr-mbp13-2017";
 
     specialArgs =
       inputs
       // {
-        inherit username useremail hostname;
+        inherit username useremail;
       };
   in {
-    darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
-      inherit system specialArgs;
+    # Configuration for mbp13-2017 (x86_64-darwin)
+    darwinConfigurations."solr-mbp13-2017" = darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
+      specialArgs = specialArgs // { hostname = "solr-mbp13-2017"; };
       modules = [
         ./modules/nix-core.nix
         ./modules/system.nix
         ./modules/apps.nix
-        ./modules/homebrew-mirror.nix # comment this line if you don't need a homebrew mirror
+        # ./modules/homebrew-mirror.nix # comment this line if you don't need a homebrew mirror
         ./modules/host-users.nix
 
         # home manager
@@ -82,7 +82,30 @@
       ];
     };
 
-    # nix code formatter
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    # Configuration for m2-mba13-2022 (aarch64-darwin)
+    darwinConfigurations."m2-mba13-2022" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = specialArgs // { hostname = "m2-mba13-2022"; };
+      modules = [
+        ./modules/nix-core.nix
+        ./modules/system.nix
+        ./modules/apps.nix
+        # ./modules/homebrew-mirror.nix # comment this line if you don't need a homebrew mirror
+        ./modules/host-users.nix
+
+        # home manager
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = specialArgs;
+          home-manager.users.${username} = import ./home;
+        }
+      ];
+    };
+
+    # nix code formatter for both systems
+    formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
+    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
   };
 }
