@@ -22,6 +22,7 @@
 
     defaults = {
       menuExtraClock.Show24Hour = true;  # show 24 hour clock
+      menuExtraClock.ShowSeconds = true;  # show seconds 
       
       # customize dock
       dock = {

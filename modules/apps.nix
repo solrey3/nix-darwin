@@ -97,6 +97,7 @@
       "obsidian"
       "protonvpn"
       "raspberry-pi-imager"
+      "spectacle"
       "vlc"
     ];
   };
