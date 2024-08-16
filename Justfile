@@ -1,7 +1,8 @@
 # just is a command runner, Justfile is very similar to Makefile, but simpler.
 
 # TODO update hostname here!
-hostname := "solr-mba-m2-2022"
+armHostname := "delta"
+intelHostname := "solr-mbp13-2017"
 
 ############################################################################
 #
@@ -14,19 +15,32 @@ darwin-set-proxy:
   sudo python3 scripts/darwin_set_proxy.py
 
 # darwin: darwin-set-proxy
-darwin: 
-  nix build .#darwinConfigurations.{{hostname}}.system \
+darwin-arm: 
+  nix build .#darwinConfigurations.{{armHostname}}.system \
     --extra-experimental-features 'nix-command flakes' --impure
 
-  ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}} --impure
+  ./result/sw/bin/darwin-rebuild switch --flake .#{{armHostname}} --impure
 
 # darwin-debug: darwin-set-proxy
-darwin-debug: 
-  nix build .#darwinConfigurations.{{hostname}}.system --show-trace --verbose \
+darwin-arm-debug: 
+  nix build .#darwinConfigurations.{{armHostname}}.system --show-trace --verbose \
     --extra-experimental-features 'nix-command flakes'
 
-  ./result/sw/bin/darwin-rebuild switch --flake .#{{hostname}} --show-trace --verbose
+  ./result/sw/bin/darwin-rebuild switch --flake .#{{armHostname}} --show-trace --verbose
 
+# darwin: darwin-set-proxy
+darwin-intel: 
+  nix build .#darwinConfigurations.{{intelHostname}}.system \
+    --extra-experimental-features 'nix-command flakes' --impure
+
+  ./result/sw/bin/darwin-rebuild switch --flake .#{{intelHostname}} --impure
+
+# darwin-debug: darwin-set-proxy
+darwin-intel-debug: 
+  nix build .#darwinConfigurations.{{intelHostname}}.system --show-trace --verbose \
+    --extra-experimental-features 'nix-command flakes'
+
+  ./result/sw/bin/darwin-rebuild switch --flake .#{{intelHostname}} --show-trace --verbose
 ############################################################################
 #
 #  nix related commands

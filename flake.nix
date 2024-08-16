@@ -82,10 +82,10 @@
       ];
     };
 
-    # Configuration for solr-mba-m2-2022 (aarch64-darwin)
-    darwinConfigurations."solr-mba-m2-2022" = darwin.lib.darwinSystem {
+    # Configuration for my M2 Macbook Air (aarch64-darwin)
+    darwinConfigurations."delta" = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      specialArgs = specialArgs // { hostname = "solr-mba-m2-2022"; };
+      specialArgs = specialArgs // { hostname = "delta"; };
       modules = [
         ./modules/nix-core.nix
         ./modules/system.nix
