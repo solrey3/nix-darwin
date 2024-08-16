@@ -82,10 +82,10 @@
       ];
     };
 
-    # Configuration for m2-mba13-2022 (aarch64-darwin)
-    darwinConfigurations."m2-mba13-2022" = darwin.lib.darwinSystem {
+    # Configuration for solr-mba-m2-2022 (aarch64-darwin)
+    darwinConfigurations."solr-mba-m2-2022" = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      specialArgs = specialArgs // { hostname = "m2-mba13-2022"; };
+      specialArgs = specialArgs // { hostname = "solr-mba-m2-2022"; };
       modules = [
         ./modules/nix-core.nix
         ./modules/system.nix

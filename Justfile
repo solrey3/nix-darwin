@@ -1,7 +1,7 @@
 # just is a command runner, Justfile is very similar to Makefile, but simpler.
 
 # TODO update hostname here!
-hostname := "solr-mbp13-2017"
+hostname := "solr-mba-m2-2022"
 
 ############################################################################
 #

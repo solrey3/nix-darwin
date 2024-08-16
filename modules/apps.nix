@@ -21,6 +21,7 @@
     neovim
     git
     just # use Justfile to simplify nix-darwin's commands 
+    fastfetch
   ];
   environment.variables.EDITOR = "nvim";
 
