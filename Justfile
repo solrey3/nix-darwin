@@ -2,7 +2,7 @@
 
 # TODO update hostname here!
 armHostname := "delta"
-intelHostname := "solr-mbp13-2017"
+intelHostname := "charlie"
 
 ############################################################################
 #

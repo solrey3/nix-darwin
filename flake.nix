@@ -61,9 +61,9 @@
       };
   in {
     # Configuration for mbp13-2017 (x86_64-darwin)
-    darwinConfigurations."solr-mbp13-2017" = darwin.lib.darwinSystem {
+    darwinConfigurations."charlie" = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
-      specialArgs = specialArgs // { hostname = "solr-mbp13-2017"; };
+      specialArgs = specialArgs // { hostname = "charlie"; };
       modules = [
         ./modules/nix-core.nix
         ./modules/system.nix
