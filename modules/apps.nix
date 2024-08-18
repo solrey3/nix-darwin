@@ -93,6 +93,7 @@
       "alacritty"
       "arc"
       "brave-browser"
+      "microsoft-edge"
       "musicbrainz-picard"
       "nextcloud"
       "obsidian"
@@ -100,6 +101,7 @@
       "raspberry-pi-imager"
       "spectacle"
       "vlc"
+      "whatsapp"
     ];
   };
 }
